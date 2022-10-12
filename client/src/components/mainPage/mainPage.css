@@ -1,0 +1,93 @@
+.main-header{
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background: linear-gradient(100.95deg, #F6526D -0.67%, #F66E53 107.59%, #F6675A 107.59%);
+    border-radius: 0px 0px 255px 0px;
+}
+
+.logo{
+    position: relative;
+    top: 15px;
+    left: 70px;
+    color: white;
+    font-weight: 800;
+    font-size: 40px;
+}
+
+.header-content{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+    width: 80%;
+}
+
+.pages-img{
+    width: 401px;
+    height: 401px;
+}
+
+.text-content{
+    padding-top: 60px;
+}
+
+.heading-upper-line{
+    color: white;
+    font-weight: 400;
+    font-size: 55px;
+    padding: 63px;
+}
+
+.heading-lower-line{
+    color: #252586;
+    font-size: 70px;
+    padding: 63px;
+    font-weight: 700;
+    line-height: 104.88%;
+}
+
+.and{
+    color: #EF2C57;
+    font-size: 80px;
+}
+
+.pages-button{
+    margin: 63px;
+    color: white;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-size: 24px;
+    background: #EF2C57;
+}
+.pages-button:hover{
+    background: #F66E53;
+    box-shadow: 2px 2px 0px 0px #C7C7C7;
+}
+
+.rectangle{
+    display: block;
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    width: 50%;
+    height: 60%;
+    opacity: 0.4;
+    background-color: #C7C7C7;
+    border-bottom-left-radius: 40%;
+    z-index: -1;
+}
+
+.shape{
+    position: absolute;
+    right: 300px;
+    bottom: 160px;
+    height: 400px;
+}
+
+.text-bottom{
+    width: 30%;
+    font-size: 22px;
+    color: #6C6C6C;
+    margin: 100px 0px 0px 140px;
+}
