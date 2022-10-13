@@ -1,0 +1,85 @@
+.data-page{
+    background: #F4F4FF;
+    height: 100vh;
+}
+
+.data-page-header{
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90.21deg, #F64C72 0%, #F66E53 102.35%);
+    border-radius: 0px 0px 45px 0px;
+    height: 90px;
+}
+.data-page-logo{
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: 0.085em;
+    color: white;
+    padding-left: 70px;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(90vh - 100px);
+    padding-top: 67px;
+}
+
+.table-header{
+    background: linear-gradient(90deg, #F6526D 0%, #F66E53 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 19px;
+    border-radius: 8px;
+    height: 50px;
+}
+
+.table-header,.table-row{
+    max-width: 1145px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    margin-top: 9px;
+    box-shadow: 0px 3px 4px 0px #C3C3C3;
+}
+
+.table-row{
+    font-size: 16px;
+    height: 40px;
+}
+
+.table-row.white{
+    background: #FCFCFC;
+    color: #8B8B8B;
+}
+
+.table-row.pink{
+    background: #EFC1B8;
+    color: #777777;
+}
+
+.name{
+    flex: 25%;
+    padding-left: 5px;
+}
+
+.age{
+    flex: 20%;
+}
+
+.dob{
+    flex: 20%;
+}
+
+.email{
+    flex: 30%;
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
