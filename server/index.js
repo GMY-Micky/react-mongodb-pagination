@@ -21,9 +21,6 @@ mongoose.connect(
 )
     .then(() => {
         console.log("Database Connected successfully");
-        addFakeData().catch((err)=>{
-            console.log(err.message);
-        });
     })
     .catch((err) => {
         console.log(err.message);
@@ -35,7 +32,7 @@ app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
 })
 
-async function addFakeData()
+/*async function addFakeData()
 {
     const data = await Data.find({});
     if(data.length === 0)
@@ -57,4 +54,4 @@ async function addFakeData()
     {
         console.log("Data found...");
     }
-}
+}*/

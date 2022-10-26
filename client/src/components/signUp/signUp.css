@@ -1,0 +1,28 @@
+.date-of-birth{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top:15px ;
+}
+
+.email-field,.pass-field{
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.check{
+    color: green;
+    font-size: 1.4rem;
+    margin-right: 5px;
+}
+
+.alert{
+    color: red;
+    font-size: 1.4rem;
+    margin-right: 5px;
+}
+
+.email-field{
+
+}

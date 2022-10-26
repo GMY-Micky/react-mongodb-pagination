@@ -18,6 +18,10 @@
     padding-left: 70px;
 }
 
+.main-page-link{
+    text-decoration:none;
+}
+
 .table{
     display: flex;
     flex-direction: column;

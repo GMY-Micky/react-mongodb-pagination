@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from "react"
+import {Link} from "react-router-dom";
 import "./dataPage.css"
 //import {data} from "../data"
 import {Pagination} from "@mui/material";
@@ -33,7 +34,8 @@ const DataPage = () =>{
     return (
         <div className={"data-page"}>
             <div className={"data-page-header"}>
-                <span className={"data-page-logo"}>Data</span>
+                <Link to={'/'} className={"main-page-link"}><span className={"data-page-logo"}>Data</span></Link>
+
             </div>
             <div className={"table"}>
                 <div className={"table-header"}>
