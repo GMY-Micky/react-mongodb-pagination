@@ -1,12 +1,15 @@
 import {useState} from "react";
 import "./signUp.css";
 import { CiCircleAlert,CiCircleCheck } from "react-icons/ci";
-import {unstable_ClassNameGenerator} from "@mui/material";
-
+import {useNavigate} from "react-router-dom"
+import axios from 'axios';
 
 const SignUp = () =>{
 
+    const navigate = useNavigate();
+
     const [email,setEmail]= useState("");
+    const [duplication,setDuplication] = useState(false);
     const [emailIcon, setEmailIcon]=useState(false);
     const [password,setPassword]= useState("");
     const [confirmPassword,setConfirmPassword]= useState("");
@@ -18,7 +21,32 @@ const SignUp = () =>{
     const formHandle =(e)=>{
         e.preventDefault();
 
-    console.log("form submited");
+        setDuplication(false);
+        if(fullName && email && password && confirmPassword && (password === confirmPassword) && dateOfBirth)
+        {
+            const user = {
+                email,
+                password,
+                name:fullName,
+                DOB:dateOfBirth,
+            }
+
+            axios.post("http://localhost:8000/signup",
+            user
+            ).then((response) => {
+                console.log(response.data);
+            if(response.data.status === "error")
+            {
+                setDuplication(true);
+            }
+            else if(response.data.status === "ok")
+            {
+                navigate('/signin');
+            }
+        })
+        }
+
+
     }
 
     const emailCheck = (e)=>{
@@ -46,6 +74,7 @@ const SignUp = () =>{
         <div className={"form-page"}>
             <form onSubmit={formHandle}>
                 <h1>Sign Up</h1>
+
                 <div className={"input-field"}>
                     <label>Full name</label><br/>
                     <input type="text" value={fullName} onChange={(e)=>setFullName(e.target.value)}/>
@@ -72,6 +101,7 @@ const SignUp = () =>{
                     <label>Date of Birth</label>
                     <input type="date" value={dateOfBirth} onChange={e=>setDateOfBirth(e.target.value)}/>
                 </div>
+                {duplication && <p>User Already Exist</p>}
                 <button disabled={!(emailIcon && passwordIcon)} type={"submit"}>Submit</button>
             </form>
         </div>

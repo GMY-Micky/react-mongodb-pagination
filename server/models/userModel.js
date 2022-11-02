@@ -10,16 +10,13 @@ const Data = new mongoose.Schema({
     name:{
         type:String,required:true
     },
-    age:{
-        type:Number,required:true
-    },
     DOB:{
         type:String,required:true
     },
     amount:{
         type:Number,required:true
     }
-},{collection:"data"});
+},{collection:"user"});
 
 const data = mongoose.model("data",Data);
 module.exports = data;

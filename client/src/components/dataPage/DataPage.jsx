@@ -8,26 +8,44 @@ import axios from "axios";
 const DataPage = () =>{
     const [persons,setPersons]=useState([]);
 
+
     useEffect(()=>{
-        axios.post("http://localhost:8000/data/",{
-            collectionLimit:10,
-            pageNumber:1
-        }).then(res=>{
-            console.log(res.data);
-            setPersons(res.data)
-        }).catch((err)=>{
-            console.error(err);
-        })
+
+        const token = localStorage.getItem("token");
+
+        if(token) {
+            axios.post("http://localhost:8000/data/", {
+                collectionLimit: 10,
+                pageNumber: 1
+            }, {
+                headers:{
+                'Authorization': `Bearer ${token}`}
+            }).then(res => {
+                console.log(res.data);
+                setPersons(res.data)
+            }).catch((err) => {
+                console.error(err);
+            })
+        }
     },[])
 
     const pageChangeHandle=(event,value)=>{
-        axios.post("http://localhost:8000/data/",{
-            collectionLimit:10,
-            pageNumber:value
-        }).then(res=>{
-            console.log(res.data);
-            setPersons(res.data)
-        })
+        const token = localStorage.getItem("token");
+
+        if(token) {
+            axios.post("http://localhost:8000/data/", {
+                collectionLimit: 10,
+                pageNumber: value
+            }, {
+                headers:{
+                    'Authorization': `Bearer ${token}`}
+            }).then(res => {
+                console.log(res.data);
+                setPersons(res.data)
+            }).catch((err) => {
+                console.error(err);
+            })
+        }
     }
 
 

@@ -26,7 +26,7 @@ mongoose.connect(
         console.log(err.message);
     });
 
-app.use("/data",dataRouter);
+app.use("/",dataRouter);
 
 app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);

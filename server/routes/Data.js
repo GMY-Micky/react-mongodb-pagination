@@ -5,9 +5,9 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const auth = require("../middleware/auth");
+const {faker} = require('@faker-js/faker');
 
-const {authenticate} = auth;
-router.post('/',authenticate,async (req,res)=>{
+router.post('/data',auth,async (req,res)=>{
     const limit = req.body.collectionLimit;
     const pageNumber = req.body.pageNumber;
 
@@ -23,17 +23,17 @@ router.post('/',authenticate,async (req,res)=>{
 })
 
 router.post("/signup",async(req,res)=>{
+
     const user = new Data({
         email:req.body.email,
         password:req.body.password,
         name:req.body.name,
-        age:req.body.age,
         DOB:req.body.DOB,
         amount:0,
     });
 
     await Data.findOne({email:user.email}).then((err,obj)=>{
-        if(!obj){
+        if(!err){
             bcrypt.hash(req.body.password,10,async (err,hash)=>{
                 if(err)
                 {
@@ -43,49 +43,56 @@ router.post("/signup",async(req,res)=>{
                     await user.save().then(()=>{
                         res.json({status:"ok"});
                     }).catch(err=>{
-                        res.json({error:err});
+                        res.json({status:"error"});
                     })
                 }
             })
         }
         else {
-            res.status(403).send('User already exists...');
+            res.json({status:"error"});
         }
 
     })
-
-
 })
-router.post("/signin",async (req,res)=>{
-    await Data.findOne({email:req.body.email}).then((err,obj)=>{
-        if(!obj)
-        {
-            res.status(404).send("User doesn't exist");
-        }else{
-            bcrypt.compare(req.body.password,obj.password,(err,result)=>{
-                if(!result) {
-                    res.status(400).send("Incorrect password")
-                }else{
-                    const payload ={
-                        email:obj.email,
-                        name:obj.name,
+router.post("/signin", async (req, res) => {
+    await Data.findOne({ email: req.body.email })
+        .then((obj) => {
+            if (!obj) {
+                res.json({ status: "error" });
+            } else {
+                bcrypt.compare(req.body.password, obj.password, (err, result) => {
+                    if (err) {
+                        console.log(err.message);
+                    } else if (result) {
+                        const payload = {
+                            email: obj.email,
+                            name: obj.name,
+                        };
+                        jwt.sign(
+                            payload,
+                            "97732444030",
+                            (err, token) => {
+                                if (err) {
+                                    console.log(err.message);
+                                } else {
+                                    res.json({
+                                        status: "ok",
+                                        firstName: obj.firstName,
+                                        token,
+                                    });
+                                }
+                            }
+                        );
+                    } else {
+                        res.json({status:"error"});
                     }
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+});
 
-                    jwt.sign(payload,97732444030,{expiresIn:3600},(err,token)=>{
-                        if(err)
-                        {
-                            res.status(500).send(err);
-                        }else{
-                            res.json({
-                                status:'ok',
-                                token
-                            });
-                        }
-                    })
-                }
-            })
-        }
-    })
-})
 
 module.exports = router;

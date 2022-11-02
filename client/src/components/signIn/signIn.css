@@ -21,7 +21,6 @@ h1{
 
 .input-field{
     margin-top: 15px;
-    border-radius: 5px;
 }
 
 label{
@@ -40,6 +39,14 @@ input{
     border: none;
     color: #6C6C6C;
     outline-style: none;
+
+    border-radius:5px;
+}
+
+p{
+    margin-top:20px;
+    color:red;
+    text-align: center;
 }
 
 button{
